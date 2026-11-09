@@ -27,6 +27,22 @@ apm install              # despliega los agentes en .claude/, .github/, .opencod
 
 Los agentes se editan en `.apm/agents/`. Las carpetas desplegadas son generadas y están en `.gitignore`.
 
+### OpenCode
+
+`apm install` despliega los agentes en `.opencode/agents/`, pero no la instrucción que coordina el flujo
+(`speckit-flujo`): OpenCode lee sus instrucciones desde `AGENTS.md`, y ese archivo lo genera `apm compile`.
+En el proyecto donde uses los agentes, ejecuta después de instalar:
+
+```bash
+apm compile
+```
+
+Si el proyecto ya tiene un `AGENTS.md` escrito a mano, APM no lo sobrescribe (avisa con `Protected AGENTS.md`).
+En ese caso, copia en tu `AGENTS.md` el contenido de `.apm/instructions/speckit-flujo.instructions.md`.
+
+Sin esa instrucción los agentes funcionan igual, pero el agente principal no sabrá que debe pedir aprobación
+tras la spec y tras el plan, ni cortar tras 3 ciclos developer ↔ tester.
+
 ## Licencia
 
 [MIT](LICENSE)
