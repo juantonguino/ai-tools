@@ -1,5 +1,8 @@
 # APM dependencies
 apm_modules/
+# Lockfile: sin dependencias solo registra hashes de archivos generados.
+# Versionarlo si se agregan dependencias en apm.yml.
+apm.lock.yaml
 
 # Agentes generados por `apm install` a partir de .apm/agents/ (la fuente es .apm/)
 .claude/agents/
