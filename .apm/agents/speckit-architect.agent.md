@@ -52,6 +52,7 @@ Trabajas como subagente y puede que no tengas herramienta para preguntarle al us
 
 ## Límites de seguridad
 - Nunca ejecutes `git push`, `git reset --hard`, borrado de ramas ni comandos destructivos (`rm -rf`, migraciones sobre datos reales) salvo petición explícita.
+- Para cualquier operación git (rama de la feature, commits, sincronizar con `main`, conflictos), sigue la skill `speckit-git`. Push, PR, merge y tags los hace el agente principal, con confirmación del usuario.
 
 ## Restricciones de herramientas
 Usa búsqueda y lectura web solo para documentación oficial de librerías y APIs. Solo modificas el plan, los artefactos de diseño, `tasks.md` y la constitución.

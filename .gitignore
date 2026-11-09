@@ -10,6 +10,11 @@ apm.lock.yaml
 .opencode/agents/
 .kiro/agents/
 
+# Skills generadas por `apm install` a partir de .apm/skills/
+.claude/skills/
+.agents/skills/
+.kiro/skills/
+
 # Instrucciones generadas por `apm install` a partir de .apm/instructions/
 .claude/rules/
 .github/instructions/

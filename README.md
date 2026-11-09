@@ -15,6 +15,12 @@ GitHub Copilot, OpenCode y Kiro.
 
 Flujo: product → architect → developer → tester. Si `converge` encuentra brechas, vuelve a developer.
 
+## Skill
+
+`speckit-git`: política git para el flujo (rama por feature desde `main`, Conventional Commits, PR con squash merge).
+Los agentes hacen ramas y commits locales; push, PR, merge y tags requieren confirmación del usuario.
+Incluye una configuración recomendada para la extensión git de Spec Kit en `assets/git-config.yml`.
+
 ## Uso
 
 Requisitos: [APM CLI](https://github.com/microsoft/apm) y, en el proyecto donde se usen los agentes,
@@ -22,7 +28,7 @@ Spec Kit inicializado (`specify init . --integration <claude|opencode|kiro-cli>`
 
 ```bash
 apm compile --validate   # valida las primitivas
-apm install              # despliega los agentes en .claude/, .github/, .opencode/ y .kiro/
+apm install              # despliega agentes, skill e instrucción en .claude/, .github/, .agents/, .opencode/ y .kiro/
 ```
 
 Los agentes se editan en `.apm/agents/`. Las carpetas desplegadas son generadas y están en `.gitignore`.

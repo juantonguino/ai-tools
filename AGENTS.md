@@ -21,7 +21,7 @@ apm.yml                 Manifiesto del paquete APM
   agents/               Definiciones de agentes (*.agent.md)
   instructions/         Instrucciones (speckit-flujo.instructions.md)
   prompts/              Prompts reutilizables (vacío, con .gitkeep)
-  skills/               Skills (vacío, con .gitkeep)
+  skills/speckit-git/   Skill de git (SKILL.md, references/, assets/)
   hooks/                Hooks (vacío, con .gitkeep)
 ```
 
@@ -57,6 +57,19 @@ Convenciones compartidas por todos los agentes (mantenerlas al editar o agregar 
 
 La tabla de comandos, "Preguntas al usuario" y "Límites de seguridad" se repiten **a propósito** en los 4 agentes, porque
 cada subagente arranca sin contexto. Deben mantenerse idénticos: si cambias uno, cambia los cuatro.
+
+## Skill `speckit-git`
+
+`.apm/skills/speckit-git/` define la política git para proyectos con Spec Kit: GitHub Flow (una rama por feature,
+con el nombre de su carpeta), Conventional Commits y squash merge a `main` con `gh`. Las ramas y los commits locales
+se hacen sin confirmación; push, PR, merge, tags y reescritura de historial, solo con confirmación del usuario.
+Los 4 agentes la citan en "Límites de seguridad" y la instrucción del flujo la usa para arrancar desde `main` y para
+integrar (paso 8).
+
+- `references/`: Conventional Commits y plantilla de PR (se cargan bajo demanda).
+- `assets/git-config.yml`: configuración para la extensión git de Spec Kit (`specify extension add git`). Usa
+  `commit_style: fixed`, porque con `conventional` la extensión ignora los mensajes configurados.
+- `apm install` la despliega en `.claude/skills/`, `.agents/skills/` (Copilot y OpenCode) y `.kiro/skills/`.
 
 ## Cómo trabajar en este repo
 

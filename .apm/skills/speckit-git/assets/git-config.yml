@@ -1,0 +1,29 @@
+# Configuración recomendada para la extensión git de Spec Kit
+# Destino: .specify/extensions/git/git-config.yml
+# Claves según extensions/git/README.md del repositorio github/spec-kit.
+
+branch_numbering: sequential          # 001-nombre-corto (coincide con la carpeta de la feature)
+# fixed: la extensión usa los mensajes de abajo tal cual (ya son Conventional Commits con el scope de la skill).
+# Con "conventional" la extensión ignora estos mensajes y el agente genera uno desde el diff.
+commit_style: fixed
+init_commit_message: "chore: initial commit"
+
+auto_commit:
+  default: false
+  # Commits automáticos de los artefactos de Spec Kit al terminar cada fase.
+  # El código de implement NO se auto-commitea: speckit-developer hace un commit por tarea.
+  after_constitution:
+    enabled: true
+    message: "docs(constitution): add project principles"
+  after_specify:
+    enabled: true
+    message: "docs(spec): add specification"
+  after_clarify:
+    enabled: true
+    message: "docs(spec): integrate clarifications"
+  after_plan:
+    enabled: true
+    message: "docs(plan): add implementation plan"
+  after_tasks:
+    enabled: true
+    message: "docs(tasks): add task list"
