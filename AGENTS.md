@@ -17,11 +17,13 @@ No contiene código de aplicación: el "código" son archivos Markdown con front
 
 ```
 apm.yml                 Manifiesto del paquete APM
+scripts/check-agents.py Comprueba las convenciones de los agentes (lo usa la CI)
+.github/workflows/      CI: validación, convenciones e instalación
 .apm/
   agents/               Definiciones de agentes (*.agent.md)
   instructions/         Instrucciones (speckit-flujo.instructions.md)
   prompts/              Prompts reutilizables (vacío, con .gitkeep)
-  skills/speckit-git/   Skill de git (SKILL.md, references/, assets/)
+  skills/git-speckit/   Skill de git (SKILL.md, references/, assets/)
   hooks/                Hooks (vacío, con .gitkeep)
 ```
 
@@ -58,14 +60,16 @@ Convenciones compartidas por todos los agentes (mantenerlas al editar o agregar 
 La tabla de comandos, "Preguntas al usuario" y "Límites de seguridad" se repiten **a propósito** en los 4 agentes, porque
 cada subagente arranca sin contexto. Deben mantenerse idénticos: si cambias uno, cambia los cuatro.
 
-## Skill `speckit-git`
+## Skill `git-speckit`
 
-`.apm/skills/speckit-git/` define la política git para proyectos con Spec Kit: GitHub Flow (una rama por feature,
+`.apm/skills/git-speckit/` define la política git para proyectos con Spec Kit: GitHub Flow (una rama por feature,
 con el nombre de su carpeta), Conventional Commits y squash merge a `main` con `gh`. Las ramas y los commits locales
 se hacen sin confirmación; push, PR, merge, tags y reescritura de historial, solo con confirmación del usuario.
 Los 4 agentes la citan en "Límites de seguridad" y la instrucción del flujo la usa para arrancar desde `main` y para
 integrar (paso 8).
 
+- Se llama `git-speckit` y no `speckit-git` para no compartir prefijo con los skills `speckit-git-*` que instala la
+  extensión git de Spec Kit en `.claude/skills/` (chocarían si Spec Kit agrega un comando `git`).
 - `references/`: Conventional Commits y plantilla de PR (se cargan bajo demanda).
 - `assets/git-config.yml`: configuración para la extensión git de Spec Kit (`specify extension add git`). Usa
   `commit_style: fixed`, porque con `conventional` la extensión ignora los mensajes configurados.
@@ -93,7 +97,10 @@ integrar (paso 8).
   - `apm compile` — genera los archivos de contexto para los targets de `apm.yml`.
   - `apm install` — instala dependencias APM/MCP.
 - Escribir el contenido de los agentes en español, manteniendo el tono imperativo y las reglas explícitas actuales.
-- No hay build, linter ni suite de pruebas; validar con `apm compile --validate`.
+- No hay build ni suite de pruebas. Antes de hacer commit, ejecutar lo mismo que la CI (`.github/workflows/validate.yml`):
+  `apm compile --validate`, `python3 scripts/check-agents.py` (bloques comunes idénticos y sin `tools:`),
+  `apm install` sin avisos y `git status` limpio (todo lo generado está en `.gitignore`).
+- Si cambias un bloque común, cámbialo en los 4 agentes: `scripts/check-agents.py` falla si difieren.
 
 ## Notas
 

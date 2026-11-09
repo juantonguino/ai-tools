@@ -17,7 +17,7 @@ Flujo: product → architect → developer → tester. Si `converge` encuentra b
 
 ## Skill
 
-`speckit-git`: política git para el flujo (rama por feature desde `main`, Conventional Commits, PR con squash merge).
+`git-speckit`: política git para el flujo (rama por feature desde `main`, Conventional Commits, PR con squash merge).
 Los agentes hacen ramas y commits locales; push, PR, merge y tags requieren confirmación del usuario.
 Incluye una configuración recomendada para la extensión git de Spec Kit en `assets/git-config.yml`.
 
@@ -28,6 +28,7 @@ Spec Kit inicializado (`specify init . --integration <claude|opencode|kiro-cli>`
 
 ```bash
 apm compile --validate   # valida las primitivas
+python3 scripts/check-agents.py   # comprueba las convenciones de los agentes (también en la CI)
 apm install              # despliega agentes, skill e instrucción en .claude/, .github/, .agents/, .opencode/ y .kiro/
 ```
 

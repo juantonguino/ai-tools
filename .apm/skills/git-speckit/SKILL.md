@@ -1,5 +1,5 @@
 ---
-name: speckit-git
+name: git-speckit
 description: Úsala para cualquier operación git en un proyecto que usa GitHub Spec Kit: crear o cambiar a la rama de la feature, hacer commit después de una fase de Spec Kit o de una tarea, sincronizar con main, abrir o fusionar un pull request, crear un tag de release o resolver conflictos. Aplica GitHub Flow, Conventional Commits y squash merge, y dice qué operaciones requieren confirmación del usuario.
 ---
 
