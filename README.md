@@ -34,6 +34,23 @@ apm install              # despliega agentes, skill e instrucción en .claude/, 
 
 Los agentes se editan en `.apm/agents/`. Las carpetas desplegadas son generadas y están en `.gitignore`.
 
+### Instalar en otro proyecto
+
+```bash
+apm install juantonguino/ai-tools#v0.1.0                          # paquete completo (agentes, skill e instrucción)
+apm install juantonguino/ai-tools/.apm/skills/git-speckit#v0.1.0  # solo la skill git-speckit
+apm install -g juantonguino/ai-tools#v0.1.0                       # global, para todos tus proyectos
+```
+
+Fija la versión con `#vX.Y.Z`; sin ella se instala lo último de `main`.
+
+Si el proyecto tiene carpetas de varias herramientas (`.claude/`, `.opencode/`, `.kiro/`…) y su `apm.yml` no define
+`targets`, APM se detiene con `Multiple harnesses detected`. Indica cuáles usar:
+
+```bash
+apm install juantonguino/ai-tools#v0.1.0 --target claude,opencode
+```
+
 ### OpenCode
 
 `apm install` despliega los agentes en `.opencode/agents/`, pero no la instrucción que coordina el flujo
