@@ -17,8 +17,7 @@ No contiene código de aplicación: el "código" son archivos Markdown con front
 
 ```
 apm.yml                 Manifiesto del paquete APM
-scripts/check-agents.py Comprueba las convenciones de los agentes (lo usa la CI)
-.github/workflows/      CI: validación, convenciones e instalación
+scripts/check-agents.py Comprueba las convenciones de los agentes
 .apm/
   agents/               Definiciones de agentes (*.agent.md)
   instructions/         Instrucciones (speckit-flujo.instructions.md)
@@ -97,7 +96,7 @@ integrar (paso 8).
   - `apm compile` — genera los archivos de contexto para los targets de `apm.yml`.
   - `apm install` — instala dependencias APM/MCP.
 - Escribir el contenido de los agentes en español, manteniendo el tono imperativo y las reglas explícitas actuales.
-- No hay build ni suite de pruebas. Antes de hacer commit, ejecutar lo mismo que la CI (`.github/workflows/validate.yml`):
+- No hay build, suite de pruebas ni CI (GitHub Actions está desactivado). Antes de hacer commit, ejecutar a mano:
   `apm compile --validate`, `python3 scripts/check-agents.py` (bloques comunes idénticos y sin `tools:`),
   `apm install` sin avisos y `git status` limpio (todo lo generado está en `.gitignore`).
 - Si cambias un bloque común, cámbialo en los 4 agentes: `scripts/check-agents.py` falla si difieren.

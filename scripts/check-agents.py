@@ -4,7 +4,7 @@
 - Los bloques que se repiten a propósito deben ser idénticos en todos los agentes.
 - Ningún agente declara `tools:` en el frontmatter (ver AGENTS.md: cada target exige otro formato).
 
-Uso: python3 scripts/check-agents.py  (sale con código 1 si algo falla)
+Uso: python3 scripts/check-agents.py  (sale con código 1 si algo falla). Ejecutar antes de cada commit.
 """
 
 import re

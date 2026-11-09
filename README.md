@@ -28,7 +28,7 @@ Spec Kit inicializado (`specify init . --integration <claude|opencode|kiro-cli>`
 
 ```bash
 apm compile --validate   # valida las primitivas
-python3 scripts/check-agents.py   # comprueba las convenciones de los agentes (también en la CI)
+python3 scripts/check-agents.py   # comprueba las convenciones de los agentes
 apm install              # despliega agentes, skill e instrucción en .claude/, .github/, .agents/, .opencode/ y .kiro/
 ```
 
