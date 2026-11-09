@@ -1,0 +1,19 @@
+# APM dependencies
+apm_modules/
+
+# Agentes generados por `apm install` a partir de .apm/agents/ (la fuente es .apm/)
+.claude/agents/
+.github/agents/
+.opencode/agents/
+.kiro/agents/
+
+# Instrucciones generadas por `apm install` a partir de .apm/instructions/
+.claude/rules/
+.github/instructions/
+.kiro/steering/
+
+# Configuración local de Claude Code
+.claude/settings.local.json
+
+# macOS
+.DS_Store

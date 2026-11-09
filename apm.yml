@@ -1,0 +1,15 @@
+name: ai-tools
+version: 0.1.0
+description: APM project for ai-tools
+author: juantonguino
+license: MIT
+targets:
+  - copilot
+  - claude
+  - opencode
+  - kiro
+dependencies:
+  apm: []
+  mcp: []
+includes: auto
+scripts: {}
