@@ -65,6 +65,13 @@ cada subagente arranca sin contexto. Deben mantenerse idénticos: si cambias uno
 - **No usar `tools:` en el frontmatter.** APM lo copia sin traducir y cada target exige un formato distinto: Claude/Copilot una lista,
   OpenCode un mapa (`{read: true}`) y Kiro sus propias etiquetas (`read, write, shell, web…`). Con la lista de Claude, Kiro
   rechaza el agente y `apm install` falla. Las restricciones de herramientas se expresan en el texto del agente.
+  - **Decisión (2026-11-08):** esperar a que APM adapte el frontmatter por target (en APM 0.35.0 figura como
+    "Phase 2 (per-target frontmatter transformer)" en `apm_cli/integration/agent_integrator.py`). Se descartaron
+    un script `lifecycle: post-install` (APM no ejecuta los scripts de las dependencias, solo los del proyecto que
+    instala) y paquetes generados por herramienta (demasiada complejidad para quien instala, a cambio de solo
+    bloquear web y MCP).
+  - Cuando APM lo soporte: agregar `tools:` según la sección "Restricciones de herramientas" de cada agente
+    y comprobar con `apm install` que se despliega en los 4 targets sin avisos.
 - Después de cambiar un agente, verificar con `apm install` que se despliega en los 4 targets sin avisos.
 - **Agregar otras primitivas**: usar la carpeta correspondiente en `.apm/` (`instructions/`, `prompts/`, `skills/`, `hooks/`).
 - **Compilar / distribuir** (CLI `apm` v0.35.0 instalado):
