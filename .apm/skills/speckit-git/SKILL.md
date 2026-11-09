@@ -1,6 +1,6 @@
 ---
 name: speckit-git
-description: Use when you need to do any git operation in a project that uses GitHub Spec Kit — create or switch the feature branch, commit after a Spec Kit phase or a task, sync with main, open or merge a pull request, tag a release, or resolve conflicts. Applies GitHub Flow, Conventional Commits and squash merge, and says which operations need the user's confirmation.
+description: Úsala para cualquier operación git en un proyecto que usa GitHub Spec Kit: crear o cambiar a la rama de la feature, hacer commit después de una fase de Spec Kit o de una tarea, sincronizar con main, abrir o fusionar un pull request, crear un tag de release o resolver conflictos. Aplica GitHub Flow, Conventional Commits y squash merge, y dice qué operaciones requieren confirmación del usuario.
 ---
 
 # Git para proyectos con Spec Kit
@@ -19,7 +19,7 @@ Política del proyecto (no la cambies sin que el usuario lo pida):
 
 | Sin confirmación | Con confirmación del usuario | Nunca |
 |---|---|---|
-| `git status`, `diff`, `log`, `fetch` | `git push` (incluida la primera) | Commit directo en `main` |
+| `git status`, `diff`, `log`, `fetch` | `git push` (incluida la primera) | Commit directo en `main` (única excepción: el commit inicial del proyecto, ver `constitution`) |
 | Crear/cambiar a la rama de la feature | Crear, editar o fusionar un PR | `git push --force` (sin `--with-lease`) |
 | `git add` + `git commit` en la rama de la feature | `git rebase` de una rama ya publicada | `--no-verify` para saltar hooks |
 | `git merge origin/main` en la rama de la feature (sin conflictos) | `git push --force-with-lease` sobre la rama propia | Reescribir commits que ya están en `main` |
@@ -34,7 +34,7 @@ git status --short --branch
 git remote -v
 git log --oneline -5
 ```
-- Lee `.specify/feature.json` para saber la feature activa.
+- Ubica la feature activa: usa `SPECIFY_FEATURE_DIRECTORY` si está definida; si no, lee `feature_directory` en `.specify/feature.json`.
 - Revisa si la extensión git de Spec Kit está instalada (existe `.specify/extensions/git/`). Si está, ella crea la rama en `specify` y puede hacer auto-commit: no lo dupliques.
 - Si hay cambios sin commitear que no son de esta tarea, DETENTE y repórtalo.
 
@@ -46,7 +46,8 @@ git log --oneline -5
 | specify | crear rama de la feature (ver abajo) | `docs(spec): …` |
 | clarify / checklist | rama de la feature | `docs(spec): …` |
 | plan | rama de la feature | `docs(plan): …` |
-| tasks / analyze | rama de la feature | `docs(tasks): …` |
+| tasks | rama de la feature | `docs(tasks): …` |
+| analyze | rama de la feature | Sin commit propio: solo lee. Si sus hallazgos llevan a corregir plan o tareas, esos cambios van como `docs(plan)` / `docs(tasks)` |
 | implement | rama de la feature | un commit por tarea o grupo pequeño: `feat`, `fix`, `refactor`… con `Refs: T0XX` |
 | pruebas (tester) | rama de la feature | `test(<scope>): …` |
 | converge | rama de la feature | commits de las tareas nuevas, igual que implement |
